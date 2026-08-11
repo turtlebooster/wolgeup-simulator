@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    font-family: "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    background: linear-gradient(135deg, #37506b 0%, #1b2430 45%, #0d1218 100%);
+    color: #eaf1f8;
+    position: relative;
+    display: flex; align-items: center;
+  }
+  .glow { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .35; }
+  .glow.a { width: 420px; height: 420px; background: #ffd23f; top: -140px; right: -60px; }
+  .glow.b { width: 360px; height: 360px; background: #ff7a45; bottom: -160px; left: 260px; opacity: .22; }
+
+  .left { position: relative; z-index: 2; padding: 0 60px 0 72px; flex: 1; }
+  .badge {
+    display: inline-block; font-size: 24px; font-weight: 800; color: #ffd23f;
+    background: rgba(255,210,63,.12); border: 1.5px solid rgba(255,210,63,.4);
+    padding: 8px 20px; border-radius: 999px; margin-bottom: 26px;
+  }
+  h1 { font-size: 92px; font-weight: 900; line-height: 1.02; letter-spacing: -0.03em; }
+  h1 .accent { color: #ffd23f; }
+  .hook { margin-top: 26px; font-size: 40px; font-weight: 800; color: #eaf1f8; }
+  .hook .em { color: #ff7a45; }
+  .tags { margin-top: 22px; font-size: 25px; font-weight: 600; color: #9fb0c3; }
+  .url {
+    margin-top: 40px; display: inline-block;
+    font-size: 28px; font-weight: 800; color: #2a1a00;
+    background: #ffd23f; padding: 14px 30px; border-radius: 14px;
+  }
+
+  .right { position: relative; z-index: 2; width: 420px; height: 100%; }
+  .scene { position: absolute; inset: 0; }
+  .boss {
+    position: absolute; top: 90px; left: 50%; transform: translateX(-50%);
+    font-size: 150px; filter: drop-shadow(0 12px 20px rgba(0,0,0,.4));
+  }
+  .eyes { position: absolute; top: 96px; left: 50%; transform: translateX(-50%); font-size: 46px; }
+  .worker {
+    position: absolute; bottom: 120px; left: 50%; transform: translateX(-50%);
+    font-size: 130px; filter: drop-shadow(0 12px 20px rgba(0,0,0,.4));
+  }
+  .caught {
+    position: absolute; top: 250px; right: 36px;
+    font-size: 60px; font-weight: 900; color: #ff4d5e;
+    transform: rotate(12deg); text-shadow: 0 3px 0 rgba(0,0,0,.35);
+  }
+  .desk {
+    position: absolute; bottom: 96px; left: 50%; transform: translateX(-50%);
+    width: 340px; height: 46px; background: linear-gradient(180deg,#7a5233,#5f3f27);
+    border-radius: 8px;
+  }
+</style>
+</head>
+<body>
+  <div class="glow a"></div>
+  <div class="glow b"></div>
+
+  <div class="left">
+    <div class="badge">💼 직장인 공감 원탭 게임</div>
+    <h1>월급루팡<br /><span class="accent">시뮬레이터</span></h1>
+    <div class="hook">사장님 몰래 딴짓하고<br /><span class="em">걸리기 전에</span> 버텨라 🤫</div>
+    <div class="tags">한 손가락 · 30초 컷 · 최고 기록 도전</div>
+    <div class="url">▶ turtlebooster.github.io/wolgeup-simulator</div>
+  </div>
+
+  <div class="right">
+    <div class="scene">
+      <div class="boss">🧑‍💼</div>
+      <div class="caught">딱!</div>
+      <div class="desk"></div>
+      <div class="worker">🧑‍💻</div>
+    </div>
+  </div>
+</body>
+</html>
