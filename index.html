@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#1b2430" />
+  <title>월급루팡 시뮬레이터</title>
+  <meta name="description" content="사장님 몰래 딴짓하고 땡땡이 시간 최고 기록에 도전하세요. 걸리면 끝!" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💼</text></svg>" />
+  <!-- Open Graph: 카톡/인스타 링크 미리보기 -->
+  <meta property="og:title" content="월급루팡 시뮬레이터" />
+  <meta property="og:description" content="사장님 몰래 딴짓하고 최고 땡땡이 기록에 도전! 걸리면 끝." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- 게임 무대 -->
+    <div id="stage" class="stage">
+      <!-- 상단 HUD -->
+      <div class="hud">
+        <div class="hud-score">
+          <span class="hud-label">땡땡이</span>
+          <span id="scoreValue" class="hud-value">0.0<small>초</small></span>
+        </div>
+        <div class="hud-status" id="statusChip">대기 중</div>
+        <div class="hud-best">
+          <span class="hud-label">최고</span>
+          <span id="bestValue" class="hud-value">0.0<small>초</small></span>
+        </div>
+      </div>
+
+      <!-- 사장님 -->
+      <div class="boss-zone">
+        <div id="boss" class="boss boss--away" aria-hidden="true">
+          <div class="boss-alert" id="bossAlert">!</div>
+          <div class="boss-head">
+            <div class="boss-hair"></div>
+            <div class="boss-face">
+              <div class="boss-eye left"></div>
+              <div class="boss-eye right"></div>
+              <div class="boss-brow left"></div>
+              <div class="boss-brow right"></div>
+              <div class="boss-mouth"></div>
+            </div>
+          </div>
+          <div class="boss-body"></div>
+          <div class="boss-caption" id="bossCaption">사장님</div>
+        </div>
+      </div>
+
+      <!-- 나(플레이어) -->
+      <div class="player-zone">
+        <div id="player" class="player">
+          <div class="sweat" id="sweat"></div>
+          <div class="player-head"></div>
+          <div class="player-body"></div>
+          <div class="phone" id="phone">▶</div>
+          <div class="desk"></div>
+          <div class="monitor"></div>
+        </div>
+        <div class="combo" id="combo"></div>
+      </div>
+
+      <!-- 상황 알림 토스트 -->
+      <div id="toast" class="toast"></div>
+
+      <!-- 파티클/이펙트 캔버스 -->
+      <canvas id="fx" class="fx"></canvas>
+
+      <!-- 하단 조작부 -->
+      <div class="control">
+        <button id="holdBtn" class="hold-btn" type="button">
+          <span class="hold-btn__label">꾹 눌러서<br /><b>딴짓</b></span>
+        </button>
+        <p class="control-hint">사장님이 <b>등 돌리면</b> 꾹 눌러 딴짓 · <b>돌아보기 전</b> 손 떼기</p>
+      </div>
+    </div>
+
+    <!-- 시작 화면 -->
+    <div id="titleScreen" class="overlay overlay--title">
+      <div class="overlay-card">
+        <div class="logo">💼</div>
+        <h1 class="title">월급루팡<br />시뮬레이터</h1>
+        <p class="subtitle">사장님 몰래 딴짓하고<br />최고 땡땡이 기록에 도전!</p>
+        <button id="startBtn" class="cta">출근하기</button>
+        <p class="tiny">최고 기록 <span id="titleBest">0.0</span>초</p>
+      </div>
+    </div>
+
+    <!-- 게임오버 화면 -->
+    <div id="overScreen" class="overlay overlay--over hidden">
+      <div class="overlay-card">
+        <div class="over-emoji" id="overEmoji">😱</div>
+        <h2 class="over-title" id="overTitle">딱 걸렸다!</h2>
+        <p class="over-reason" id="overReason">사장님과 눈이 마주쳤다…</p>
+        <div class="result">
+          <div class="result-row">
+            <span>오늘 땡땡이</span>
+            <b id="resultScore">0.0초</b>
+          </div>
+          <div class="result-row">
+            <span>등급</span>
+            <b id="resultGrade" class="grade">인턴</b>
+          </div>
+          <div class="result-row result-row--best">
+            <span>최고 기록</span>
+            <b id="resultBest">0.0초</b>
+          </div>
+        </div>
+        <button id="retryBtn" class="cta">한 판 더</button>
+        <button id="shareBtn" class="ghost">📸 결과 카드 만들기</button>
+      </div>
+    </div>
+
+    <!-- 공유 카드 화면 -->
+    <div id="shareScreen" class="overlay hidden">
+      <div class="overlay-card share-card-wrap">
+        <img id="shareImg" class="share-preview" alt="결과 카드" />
+        <button id="shareActionBtn" class="cta">공유 / 저장</button>
+        <button id="copyLinkBtn" class="ghost">문구 + 링크 복사</button>
+        <button id="closeShareBtn" class="ghost">닫기</button>
+        <p class="tiny" id="shareHint">이미지를 꾹 눌러 저장하거나 공유하세요</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/game.js"></script>
+</body>
+</html>
