@@ -104,6 +104,15 @@
     stageUp: () => { beep(523, 0.08, "square", 0.05); setTimeout(() => beep(784, 0.12, "square", 0.05), 90); },
   };
 
+  // ---- 분석 이벤트 (GoatCounter 연동 시 자동 집계, 없으면 no-op) ----
+  function track(name) {
+    try {
+      if (window.goatcounter && window.goatcounter.count) {
+        window.goatcounter.count({ path: name, title: name, event: true });
+      }
+    } catch (e) { /* 무시 */ }
+  }
+
   // ---- 난이도 곡선 ----
   // 시간이 갈수록 + 상황 단계가 오를수록 안전구간·반응창이 짧아짐
   const curStage = () => STAGES[stageIdx];
@@ -325,6 +334,7 @@
     stateTimer = 1.2; // 첫 안전 유예
     cancelAnimationFrame(rafId);
     rafId = requestAnimationFrame(loop);
+    track("game-start");
   }
 
   function gameOver() {
@@ -346,6 +356,7 @@
     if (isRecord) { best = score; localStorage.setItem(BEST_KEY, String(best)); }
 
     const grade = gradeFor(score);
+    track("game-over/" + grade.name); // 등급별 분포 집계
     setTimeout(() => {
       $("overEmoji").textContent = isRecord ? "🎉" : "😱";
       $("overTitle").textContent = isRecord ? "신기록 달성!" : "딱 걸렸다!";
@@ -472,6 +483,7 @@
     shareImg.src = canvas.toDataURL("image/png");
     canvas.toBlob((b) => { lastCardBlob = b; }, "image/png");
     shareScreen.classList.remove("hidden");
+    track("share-open");
   }
 
   async function shareAction() {
@@ -483,20 +495,21 @@
     if (SHARE_LINK) shareData.url = SHARE_LINK;
     // 1) 네이티브 공유(파일) — 모바일 HTTPS에서 동작
     if (navigator.canShare && navigator.canShare({ files: [file] })) {
-      try { await navigator.share(shareData); return; } catch (e) { /* 취소 */ return; }
+      try { await navigator.share(shareData); track("share-done/native"); return; } catch (e) { /* 취소 */ return; }
     }
     // 2) 폴백: 이미지 다운로드
     const a = document.createElement("a");
     a.href = shareImg.src; a.download = "월급루팡.png";
     document.body.appendChild(a); a.click(); a.remove();
     setShareHint("이미지가 저장됐어요! 인스타/카톡에 올려보세요 📲");
+    track("share-done/download");
   }
 
   function copyLinkText() {
     const grade = gradeFor(score);
     const linkLine = SHARE_LINK || "월급루팡 시뮬레이터 검색";
     const text = `나 오늘 ${score.toFixed(1)}초 땡땡이침 ${grade.emoji} [${grade.name}]\n월급루팡 시뮬레이터 — 너도 해봐 👇\n${linkLine}`;
-    const done = () => setShareHint("문구+링크 복사됨! 붙여넣기 하세요 ✅");
+    const done = () => { setShareHint("문구+링크 복사됨! 붙여넣기 하세요 ✅"); track("share-done/copy"); };
     if (navigator.clipboard && window.isSecureContext) {
       navigator.clipboard.writeText(text).then(done, fallbackCopy);
     } else fallbackCopy();
