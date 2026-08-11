@@ -438,12 +438,22 @@
     g.fillStyle = "#9fb0c3";
     g.font = `600 40px ${FONT}`;
     g.fillText("너도 사장님 몰래 딴짓해봐 👇", W / 2, 1600);
-    // URL 박스
+    // URL 박스 — 텍스트 길이에 맞춰 폰트/박스 자동 피팅
+    let urlFont = 46;
+    const maxBoxW = W - 140; // 좌우 여백 70px
+    const padX = 44;
+    g.font = `800 ${urlFont}px ${FONT}`;
+    while (g.measureText(SHARE_URL).width + padX * 2 > maxBoxW && urlFont > 24) {
+      urlFont -= 2; g.font = `800 ${urlFont}px ${FONT}`;
+    }
+    const boxW = Math.min(maxBoxW, g.measureText(SHARE_URL).width + padX * 2);
+    const boxH = 110;
     g.fillStyle = "#ffd23f";
-    roundRect(g, 240, 1660, W - 480, 110, 24); g.fill();
+    roundRect(g, (W - boxW) / 2, 1660, boxW, boxH, 24); g.fill();
     g.fillStyle = "#2a1a00";
-    g.font = `800 46px ${FONT}`;
-    g.fillText(SHARE_URL, W / 2, 1730);
+    g.textBaseline = "middle";
+    g.fillText(SHARE_URL, W / 2, 1660 + boxH / 2);
+    g.textBaseline = "alphabetic";
 
     return c;
   }
