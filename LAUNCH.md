@@ -1,4 +1,4 @@
-# 🚀 월급루팡 시뮬레이터 — 런치/시딩 킷
+# 🚀 사장님 몰래, 월급루팡 — 런치/시딩 킷
 
 **링크**: https://turtlebooster.github.io/wolgeup-simulator/
 

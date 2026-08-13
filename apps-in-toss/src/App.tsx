@@ -93,7 +93,7 @@ export default function App() {
       <div id="titleScreen" className="overlay overlay--title">
         <div className="overlay-card">
           <div className="logo">💼</div>
-          <h1 className="title">월급루팡<br />시뮬레이터</h1>
+          <h1 className="title">사장님 몰래,<br />월급루팡</h1>
           <p className="subtitle">사장님 몰래 딴짓하고<br />최고 땡땡이 기록에 도전!</p>
           <button id="startBtn" className="cta">출근하기</button>
           <button className="ghost" onClick={openLeaderboard}>🏆 전국 순위표</button>

@@ -1,4 +1,4 @@
-/* ===== 월급루팡 시뮬레이터 — 게임 로직 ===== */
+/* ===== 사장님 몰래, 월급루팡 — 게임 로직 ===== */
 (() => {
   "use strict";
 
@@ -413,7 +413,7 @@
     g.textAlign = "center";
     g.fillStyle = "#ffd23f";
     g.font = `800 46px ${FONT}`;
-    g.fillText("💼 월급루팡 시뮬레이터", W / 2, 150);
+    g.fillText("💼 사장님 몰래, 월급루팡", W / 2, 150);
     g.fillStyle = "#9fb0c3";
     g.font = `600 34px ${FONT}`;
     g.fillText("오늘의 근무태도 진단서", W / 2, 210);
@@ -490,7 +490,7 @@
     if (!lastCardBlob) return;
     const file = new File([lastCardBlob], "월급루팡.png", { type: "image/png" });
     const grade = gradeFor(score);
-    const text = `나 오늘 ${score.toFixed(1)}초 땡땡이침 ${grade.emoji} [${grade.name}] #월급루팡시뮬레이터`;
+    const text = `나 오늘 ${score.toFixed(1)}초 땡땡이침 ${grade.emoji} [${grade.name}] #월급루팡 #사장님몰래`;
     const shareData = { files: [file], text };
     if (SHARE_LINK) shareData.url = SHARE_LINK;
     // 1) 네이티브 공유(파일) — 모바일 HTTPS에서 동작
@@ -507,8 +507,8 @@
 
   function copyLinkText() {
     const grade = gradeFor(score);
-    const linkLine = SHARE_LINK || "월급루팡 시뮬레이터 검색";
-    const text = `나 오늘 ${score.toFixed(1)}초 땡땡이침 ${grade.emoji} [${grade.name}]\n월급루팡 시뮬레이터 — 너도 해봐 👇\n${linkLine}`;
+    const linkLine = SHARE_LINK || "사장님 몰래 월급루팡 검색";
+    const text = `나 오늘 ${score.toFixed(1)}초 땡땡이침 ${grade.emoji} [${grade.name}]\n사장님 몰래, 월급루팡 — 너도 해봐 👇\n${linkLine}`;
     const done = () => { setShareHint("문구+링크 복사됨! 붙여넣기 하세요 ✅"); track("share-done/copy"); };
     if (navigator.clipboard && window.isSecureContext) {
       navigator.clipboard.writeText(text).then(done, fallbackCopy);
