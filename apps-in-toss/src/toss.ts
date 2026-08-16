@@ -17,8 +17,8 @@ const supported = (fn) => {
   catch { return false; }
 };
 
-// 리더보드는 정수 점수만 → 0.1초 단위(데시초)로 제출. 예: 18.1초 → "181"
-const toBoardScore = (sec) => String(Math.max(0, Math.round(sec * 10)));
+// 리더보드 점수 단위 = "초". 정수로 반올림해 제출. 예: 47.8초 → "48"
+const toBoardScore = (sec) => String(Math.max(0, Math.round(sec)));
 
 /** Safe Area를 CSS 변수로 반영 (노치/홈바 대응) */
 function applySafeArea() {
