@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:600px; height:600px; overflow:hidden; }
+  body {
+    font-family:"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    background:linear-gradient(145deg,#37506b 0%,#1b2430 55%,#0d1218 100%);
+    position:relative; display:flex; align-items:center; justify-content:center;
+  }
+  .glow{position:absolute;width:360px;height:360px;border-radius:50%;
+    background:#ffd23f;filter:blur(80px);opacity:.28;top:60px;left:120px;}
+  .plate{
+    position:relative;z-index:2;width:340px;height:340px;border-radius:80px;
+    background:linear-gradient(160deg,#ffd23f,#ff7a45);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 24px 60px rgba(0,0,0,.45), inset 0 4px 0 rgba(255,255,255,.35);
+  }
+  .brief{font-size:190px;line-height:1;filter:drop-shadow(0 6px 10px rgba(0,0,0,.25));}
+  .shh{position:absolute;z-index:3;right:96px;bottom:96px;font-size:120px;
+    filter:drop-shadow(0 6px 12px rgba(0,0,0,.4));}
+</style></head>
+<body>
+  <div class="glow"></div>
+  <div class="plate"><div class="brief">💼</div></div>
+  <div class="shh">🤫</div>
+</body></html>

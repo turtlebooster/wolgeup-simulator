@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8"><style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:1932px; height:828px; overflow:hidden; }
+  body {
+    font-family:"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    background:linear-gradient(135deg,#37506b 0%,#1b2430 48%,#0d1218 100%);
+    color:#eaf1f8; position:relative; display:flex; align-items:center;
+  }
+  .glow{position:absolute;border-radius:50%;filter:blur(120px);}
+  .glow.a{width:560px;height:560px;background:#ffd23f;top:-160px;right:120px;opacity:.32;}
+  .glow.b{width:480px;height:480px;background:#ff7a45;bottom:-200px;left:520px;opacity:.2;}
+  .left{position:relative;z-index:2;padding:0 80px 0 110px;flex:1;}
+  .badge{display:inline-block;font-size:32px;font-weight:800;color:#ffd23f;
+    background:rgba(255,210,63,.12);border:2px solid rgba(255,210,63,.4);
+    padding:12px 28px;border-radius:999px;margin-bottom:34px;}
+  h1{font-size:130px;font-weight:900;line-height:1.0;letter-spacing:-.03em;}
+  h1 .a{color:#ffd23f;}
+  .hook{margin-top:34px;font-size:52px;font-weight:800;}
+  .hook .em{color:#ff7a45;}
+  .tags{margin-top:28px;font-size:33px;font-weight:600;color:#9fb0c3;}
+  .right{position:relative;z-index:2;width:560px;height:100%;}
+  .boss{position:absolute;top:150px;left:50%;transform:translateX(-50%);font-size:210px;
+    filter:drop-shadow(0 16px 26px rgba(0,0,0,.45));}
+  .caught{position:absolute;top:340px;right:60px;font-size:92px;font-weight:900;color:#ff4d5e;
+    transform:rotate(12deg);text-shadow:0 4px 0 rgba(0,0,0,.35);}
+  .desk{position:absolute;bottom:150px;left:50%;transform:translateX(-50%);
+    width:440px;height:60px;background:linear-gradient(180deg,#7a5233,#5f3f27);border-radius:12px;}
+  .worker{position:absolute;bottom:140px;left:50%;transform:translateX(-50%);font-size:180px;
+    filter:drop-shadow(0 16px 26px rgba(0,0,0,.45));}
+</style></head>
+<body>
+  <div class="glow a"></div><div class="glow b"></div>
+  <div class="left">
+    <div class="badge">💼 직장인 공감 원탭 게임</div>
+    <h1>사장님 몰래,<br><span class="a">월급루팡</span></h1>
+    <div class="hook">사장님 몰래 딴짓하고 <span class="em">걸리기 전에</span> 버텨라 🤫</div>
+    <div class="tags">한 손가락 · 30초 컷 · 전국 순위표 도전</div>
+  </div>
+  <div class="right">
+    <div class="boss">🧑‍💼</div>
+    <div class="caught">딱!</div>
+    <div class="desk"></div>
+    <div class="worker">🧑‍💻</div>
+  </div>
+</body></html>
